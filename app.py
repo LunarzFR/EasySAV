@@ -4,7 +4,8 @@ from flask import Flask, jsonify, request
 
 from Domain.intervention import Intervention
 from Repository.intervention_db_repository import InterventionDbRepository
-from UseCase.intervention_get_all import InterventionGetAllUseCase, ToDoSaveRequestObject
+from UseCase.intervention_get_all import InterventionGetAllUseCase
+from UseCase.intervention_save import InterventionSave
 
 app = Flask(__name__)
 
@@ -19,17 +20,12 @@ def get_all_interventions():
 
 
 @app.route("/add", methods=['POST'])
-def add():
-    try:
-        data_task = request.get_json(force=True)
-        task_request = ToDoSaveRequestObject(data_task)
-        # repo = TodoJsonRepository()
-        repo = InterventionDbRepository(CONNECTION_STRING)
-        uc = InterventionGetAllUseCase(repo)
-        response = uc.execute(task_request.get_todo_task())
-        return "{}".format(int(response.return_value)), {"Content-Type": "application/plaintext"}
-    except Exception as exc:
-        return str(exc), 400, {}
+def save_intervention():
+    repo = InterventionDbRepository(CONNECTION_STRING)
+    uc = InterventionSave(repo)
+    data = request.get_json()
+    intervention = Intervention(data.get('ref'), data.get('client'), data.get('description'))
+    return uc.execute(intervention)
 
 
 if __name__ == '__main__':
