@@ -1,6 +1,3 @@
 [
-  "test_add_intervention.py::TestToDoTask::test_client",
-  "test_add_intervention.py::TestToDoTask::test_description",
-  "test_add_intervention.py::TestToDoTask::test_to_dict",
-  "test_intervention.py::TestIntervention::test_get_all_intervention"
+  "test_intervention_get_all.py::TestIntervention::test_get_all_intervention"
 ]

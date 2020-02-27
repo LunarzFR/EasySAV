@@ -30,13 +30,13 @@ class InterventionDbRepository(InterventionRepository):
         self.__conn.commit()
 
     def save(self, intervention):
-        insert_cmd = f"INSERT INTO intervetion(ref, client, description) VALUES('{intervention.ref}','{intervention.client}', '{intervention.description}') "
+        insert_cmd = f"INSERT INTO intervention(ref, client, description) VALUES('{intervention.ref}','{intervention.client}', '{intervention.description}') "
         self.__execute_commande(insert_cmd)
         self.__commit()
-        return True
+        return "True"
 
     def get_all(self):
-        select_cmd = f"SELECT * FROM intervetion"
+        select_cmd = f"SELECT * FROM intervention"
         list_interventions = ListIntervention()
         for row in self.cursor.execute(select_cmd):
             intervention = Intervention(row[0], row[1], row[2])
