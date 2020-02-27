@@ -1,19 +1,23 @@
-# from unittest import TestCase
-# from Domain.intervention import Intervention
-#
-#
-# class TestToDoTask(TestCase):
-#     def test_to_dict(self):
-#         task = Intervention("tache 1")
-#         dict_task = {"client": "Geoffrey", "description": "test description"}
-#         dic = task.to_dict()
-#         self.assertEqual(dict_task["description"], dic["description"])
-#         self.assertEqual(dict_task["client"], dic["client"])
-#
-#     def test_client(self):
-#         task = Intervention("tache")
-#         self.assertEqual(task.client, "geoffrey")
-#
-#     def test_description(self):
-#         task = Intervention("tache")
-#         self.assertEqual(str(task.description), "test de description")
+from unittest import TestCase
+
+from Domain.intervention import Intervention
+from Repository.intervention_db_repository import InterventionDbRepository
+from UseCase.intervention_save import InterventionSave
+from app import CONNECTION_STRING
+
+
+class TestIntervention(TestCase):
+
+    def test_save_intervention(self):
+        # ARRANGE
+        repo = InterventionDbRepository(CONNECTION_STRING)
+        uc = InterventionSave(repo)
+        intervention = Intervention("2000", "Valentin", "Test")
+        # ACT
+        response = uc.execute(intervention)
+        # ASSERT
+        self.assertDictEqual(response[-1], {
+            "ref": 2000,
+            "client": "Valentin",
+            "description": "Test"
+        })

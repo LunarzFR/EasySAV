@@ -9,7 +9,7 @@ from UseCase.intervention_save import InterventionSave
 
 app = Flask(__name__)
 
-CONNECTION_STRING = f"{pathlib.Path(__file__).parent.absolute()}\\database.db"
+CONNECTION_STRING = f"{pathlib.Path(__file__).parent.absolute()}\\db.sqlite"
 
 
 @app.route('/')
