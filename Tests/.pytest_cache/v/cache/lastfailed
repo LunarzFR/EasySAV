@@ -2,5 +2,8 @@
   "test_add_intervention.py::TestToDoTask::test_client": true,
   "test_add_intervention.py::TestToDoTask::test_description": true,
   "test_add_intervention.py::TestToDoTask::test_to_dict": true,
-  "test_intervention_get_all.py::TestIntervention::test_get_all_intervention": true
+  "test_intervention_get_all.py::TestCase": true,
+  "test_intervention_get_all.py::TestIntervention": true,
+  "test_intervention_save.py::TestCase": true,
+  "test_intervention_save.py::TestIntervention": true
 }

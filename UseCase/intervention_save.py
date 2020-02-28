@@ -2,7 +2,7 @@ from Domain.intervention import Intervention
 from Repository.intervention_repository import InterventionRepository
 
 
-class InterventionSave:
+class InterventionSaveUseCase:
     def __init__(self, repo: InterventionRepository):
         self.session = None
         self.repository = repo

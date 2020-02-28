@@ -1,3 +1,4 @@
 [
-  "test_intervention_get_all.py::TestIntervention::test_get_all_intervention"
+  "test_intervention_get_all.py::TestIntervention::test_get_all_intervention",
+  "test_intervention_save.py::TestIntervention::test_save_intervention"
 ]

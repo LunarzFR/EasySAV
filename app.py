@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 from Domain.intervention import Intervention
 from Repository.intervention_db_repository import InterventionDbRepository
 from UseCase.intervention_get_all import InterventionGetAllUseCase
-from UseCase.intervention_save import InterventionSave
+from UseCase.intervention_save import InterventionSaveUseCase
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def get_all_interventions():
 @app.route("/add", methods=['POST'])
 def save_intervention():
     repo = InterventionDbRepository(CONNECTION_STRING)
-    uc = InterventionSave(repo)
+    uc = InterventionSaveUseCase(repo)
     data = request.get_json()
     intervention = Intervention('', data.get('client'), data.get('description'))
     return uc.execute(intervention)
