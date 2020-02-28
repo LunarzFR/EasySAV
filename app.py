@@ -6,6 +6,7 @@ from Domain.intervention import Intervention
 from Repository.intervention_db_repository import InterventionDbRepository
 from UseCase.intervention_get_all import InterventionGetAllUseCase
 from UseCase.intervention_save import InterventionSaveUseCase
+from Validator.intervention_validator import InterventionValidator
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ def save_intervention():
     repo = InterventionDbRepository(CONNECTION_STRING)
     uc = InterventionSaveUseCase(repo)
     data = request.get_json()
-    intervention = Intervention('', data.get('client'), data.get('description'))
+    intervention = InterventionValidator.valid_intervention(data)
     return uc.execute(intervention)
 
 
