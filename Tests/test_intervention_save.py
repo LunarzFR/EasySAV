@@ -12,12 +12,12 @@ class TestIntervention(TestCase):
         # ARRANGE
         repo = InterventionDbRepository(CONNECTION_STRING)
         uc = InterventionSave(repo)
-        intervention = Intervention("2000", "Valentin", "Test")
+        intervention = Intervention("", "Valentin", "Test")
         # ACT
         response = uc.execute(intervention)
         # ASSERT
         self.assertDictEqual(response[-1], {
-            "ref": 2000,
+            "ref": response[-1][0],
             "client": "Valentin",
             "description": "Test"
         })

@@ -30,7 +30,7 @@ class InterventionDbRepository(InterventionRepository):
         self.__conn.commit()
 
     def save(self, intervention):
-        insert_cmd = f"INSERT INTO intervention(ref, client, description) VALUES('{intervention.ref}','{intervention.client}', '{intervention.description}') "
+        insert_cmd = f"INSERT INTO intervention(client, description) VALUES('{intervention.client}', '{intervention.description}') "
         self.__execute_commande(insert_cmd)
         self.__commit()
         return "True"

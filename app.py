@@ -24,7 +24,7 @@ def save_intervention():
     repo = InterventionDbRepository(CONNECTION_STRING)
     uc = InterventionSave(repo)
     data = request.get_json()
-    intervention = Intervention(data.get('ref'), data.get('client'), data.get('description'))
+    intervention = Intervention('', data.get('client'), data.get('description'))
     return uc.execute(intervention)
 
 
